@@ -1,0 +1,20 @@
+# x-prediction MeanFlow (x-MF) generator -- architecture of the released checkpoint
+# and the sampling defaults used throughout the paper.
+
+model:
+  num_layers: 6                 # joint (MMDiT) blocks
+  num_single_layers: 18         # single DiT blocks
+  in_channels: 64               # VAE latent channels
+  attention_head_dim: 128
+  num_attention_heads: 8
+  joint_attention_dim: 1024
+  audio_seq_len: 215            # latent frames for 10 s at 44.1 kHz (2048x compression)
+  max_duration: 10
+  text_encoder_name: google/flan-t5-large
+  omega_cond: true              # guidance scale is a network input (iMF fine-tuning)
+
+sampling:
+  omega: 3.5                    # guidance scale fed to the network
+  final_steps: 2                # K: steps of the final generation after the search
+  search_steps: 1               # one-step previews for the Single-Step Search
+  max_audio_duration: 10

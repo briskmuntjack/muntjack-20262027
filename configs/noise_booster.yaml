@@ -1,0 +1,10 @@
+# Noise Booster -- architecture of the released checkpoint (6 DiT blocks, 44M params).
+
+model:
+  in_channels: 64
+  seq_len: 216        # trained on 216 latent frames; the first 215 positions are used at inference
+  dim: 512
+  depth: 6
+  heads: 8
+  mlp_ratio: 4.0
+  text_dim: 1024      # = joint_attention_dim of the generator (pooled text projection / text tokens)
